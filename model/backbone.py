@@ -39,10 +39,66 @@ class resnet(torch.nn.Module):
         self.bn1 = model.bn1
         self.relu = model.relu
         self.maxpool = model.maxpool
-        self.layer1 = model.layer1
-        self.layer2 = model.layer2
-        self.layer3 = model.layer3
-        self.layer4 = model.layer4
+        #self.layer1 = model.layer1
+        #self.layer2 = model.layer2
+        #self.layer3 = model.layer3
+        #self.layer4 = model.layer4
+        self.layer1 = torch.nn.Sequential(
+            torch.nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1)
+        )
+
+        self.layer2 = torch.nn.Sequential(
+            torch.nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(128, 256, kernel_size=3, stride=1, padding=1),
+        )
+
+        self.layer3 = torch.nn.Sequential(
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(256, 512, kernel_size=3, stride=1, padding=1),        
+        )
+
+        self.layer4 = torch.nn.Sequential(
+            torch.nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1),
+
+            torch.nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1),
+            torch.nn.Conv2d(512, 1024,kernel_size = 3,stride = 1,padding = 1)
+        )
+
 
     def forward(self,x):
         x = self.conv1(x)
